@@ -22,7 +22,7 @@ spec:
         app: k-details
     spec:
       containers:
-      - image: karan
+      - image: karankapoor/multi-tenant:karan
         name: k-details
         imagePullPolicy: Always
         ports:
