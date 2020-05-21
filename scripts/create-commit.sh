@@ -1,8 +1,14 @@
 #!/bin/bash
 
-git clone cd-resources compiled-resources
+cd cd-resources
 
-cp -r target-resources/ compiled-resources/
+git status
+
+cd ../
+
+cp -r target-resources/ cd-resources/
+
+cd cd-resources
 
 git add .
 
