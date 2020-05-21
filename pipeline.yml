@@ -21,6 +21,8 @@ resources:
     source:
       uri: ((kube-resources-repo))
       branch: master
+      username: ((github-username))
+      password: ((github-password))
   
 
 jobs:
@@ -73,9 +75,35 @@ jobs:
     - task: replace-deployment-image
       file: cd-resources/tasks/replacement-task.yml
     - task: create-resource-commit
-      file: cd-resources/tasks/create-commit.yml
+      # file: cd-resources/tasks/create-commit.yml
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: alpine/git
+
+        inputs:
+          - name: target-resources
+          - name: cd-resources
+
+        outputs:
+        - name: cd-resources
+
+        run:
+          path: sh
+          args:
+          - -exc
+          - |
+            echo "In task"
+            ls -la target-resources/kube
+            pwd
+            ls -la cd-resources
+            chmod +x cd-resources/scripts/
+            ls -la cd-resources/scripts
+            sh cd-resources/scripts/create-commit.sh
 
     - put: cd-resources
       params:
-        repository: compiled-resources
+        repository: cd-resources
 

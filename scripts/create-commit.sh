@@ -1,16 +1,21 @@
 #!/bin/bash
 
 
-
-cp -r cd-resources/ compiled-resources/
+# ls -la
+# cp -r cd-resources/ compiled-resources/
 
 #git status
 
 #cd ../
 
-cp -r target-resources/ compiled-resources/kube/
+echo "In the sh file"
 
-cd compiled-resources
+cp -r target-resources/kube/ cd-resources/kube/
+
+cd cd-resources
+
+ls -la
+
 git status
 git config --global user.email "karan.kapoor.work@gmail.com"
 git config --global user.name "Concourse"

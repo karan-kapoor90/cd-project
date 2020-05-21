@@ -10,7 +10,7 @@ inputs:
   - name: cd-resources
 
 outputs:
-- name: compiled-resources
+- name: cd-resources
 
 run:
   path: sh
