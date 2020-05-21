@@ -17,4 +17,4 @@ run:
   args:
   - cd-resources/scripts/update-deployment-image.sh
   - source-base-code/test.yaml
-  - karankapoor/multi-tenant:karan
+  - karankapoor/multi-tenant:((imageVersion))
