@@ -1,0 +1,80 @@
+---
+
+resources:
+
+  - name: source-base-code
+    type: git
+    icon: microsoft-github
+    source:
+      uri: ((code-base-repo))
+      branch: master
+
+  - name: docker-hub
+    type: docker-image
+    source:
+      repository: ((hub-username))/tenant-details
+      username: ((hub-username))
+      password: ((hub-password))
+  
+  - name: cd-resources
+    type: git
+    source:
+      uri: ((kube-resources-repo))
+      branch: master
+  
+
+jobs:
+
+  # - name: get-dependencies
+  #   public: true
+  #   serial: true
+  #   plan:
+  #     - get: source-base-code
+  #       trigger: true
+  #     - task: install-deps
+  #       config:
+  #         platform: linux
+  #         image_resource:
+  #           type: docker-image
+  #           source: 
+  #             repository: node
+  #             tag: 13.14-slim
+  #         inputs:
+  #           - name: source-base-code
+  #         run:
+  #           path: /bin/sh
+  #           args:
+  #             - -c
+  #             - |
+  #               echo "Node version: $(node --version)"
+  #               echo "NPM version: $(npm --version)"
+  #               cd source-base-code
+  #               npm install
+
+  - name: build-docker-image
+    plan:
+      - get: source-base-code
+        trigger: true
+      - put: docker-hub
+        params:
+          # The directory containing the Dockerfile
+          build: source-base-code
+          tag_file: source-base-code/.git/ref
+  
+
+
+  - name: update-deployment
+    public: true
+    serial: true
+    plan:      
+    - get: source-base-code
+      trigger: true
+    - get: cd-resources
+      trigger: true
+    - task: replace-deployment-image
+      file: cd-resources/tasks/replacement-task.yml
+
+    - put: cd-resources
+      params:
+        repository: target-resources
+
