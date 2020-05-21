@@ -1,6 +1,6 @@
 ---
-
 resources:
+
 
   - name: source-base-code
     type: git
@@ -19,11 +19,19 @@ resources:
   - name: cd-resources
     type: git
     source:
+      uri: ((cd-resources-repo))
+      branch: master
+      username: ((github-username))
+      password: ((github-password))
+
+  - name: kube-resources
+    type: git
+    source:
       uri: ((kube-resources-repo))
       branch: master
       username: ((github-username))
       password: ((github-password))
-  
+
 
 jobs:
 
@@ -86,24 +94,21 @@ jobs:
         inputs:
           - name: target-resources
           - name: cd-resources
+          - name: kube-resources
 
         outputs:
-        - name: cd-resources
+        - name: kube-resources
 
         run:
           path: sh
           args:
           - -exc
           - |
-            echo "In task"
-            ls -la target-resources/kube
-            pwd
-            ls -la cd-resources
             chmod +x cd-resources/scripts/
             ls -la cd-resources/scripts
             sh cd-resources/scripts/create-commit.sh
 
-    - put: cd-resources
+    - put: kube-resources
       params:
         repository: cd-resources
 
