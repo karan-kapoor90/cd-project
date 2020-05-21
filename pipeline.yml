@@ -73,8 +73,10 @@ jobs:
       trigger: true
     - task: replace-deployment-image
       file: cd-resources/tasks/replacement-task.yml
-
+    - task: create-resource-commit
+      file: cd-resources/tasks/create-commit.yml
+      
     - put: cd-resources
       params:
-        repository: target-resources
+        repository: compiled-resources
 
