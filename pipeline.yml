@@ -110,5 +110,5 @@ jobs:
 
     - put: kube-resources
       params:
-        repository: cd-resources
+        repository: kube-resources
 
