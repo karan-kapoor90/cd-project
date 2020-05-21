@@ -6,9 +6,9 @@ git status
 
 cd ../
 
-cp -r target-resources/ cd-resources/
+cp -r target-resources/ compiled-resources/
 
-cd cd-resources
+cd compiled-resources
 
 git config --global user.email "karan.kapoor.work@gmail.com"
 git config --global user.name "Concourse"
