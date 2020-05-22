@@ -18,6 +18,7 @@ run:
   args:
   - -exc
   - |
+    ls -la cd-resources
     chmod +x cd-resources/scripts/
     ls -la cd-resources/scripts
     sh cd-resources/scripts/create-commit.sh
