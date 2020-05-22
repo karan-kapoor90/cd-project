@@ -81,7 +81,7 @@ jobs:
       trigger: true
     - get: cd-resources
       trigger: true
-    # - get: kube-resources
+    - get: kube-resources
     - task: replace-deployment-image
       file: cd-resources/tasks/replacement-task.yml
     - task: create-resource-commit
