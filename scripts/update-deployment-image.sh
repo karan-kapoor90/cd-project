@@ -4,7 +4,7 @@
 #git clone cd-resources target-resources
 
 # Update the name of the image in the source file using yq
-COMMIT_ID=.git/refs/heads/master
+COMMIT_ID=`cat .git/refs/heads/master`
 yq w -i source-base-code/kube/workshop-deploy.yaml spec.template.spec.containers[0].image $2:$COMMIT_ID
 
 # Copy all kube resources from code repo to cd repo
