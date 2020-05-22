@@ -73,7 +73,7 @@ jobs:
   
 
 
-  - name: update-deployment
+  - name: update-deployment-files
     public: true
     serial: true
     plan:      
