@@ -84,7 +84,7 @@ jobs:
     - task: replace-deployment-image
       file: cd-resources/tasks/replacement-task.yml
       vars:
-        imageVersion: ((source-base-code/.git/ref))
+        imageVersion: source-base-code/.git/ref
     - task: create-resource-commit
       # file: cd-resources/tasks/create-commit.yml
       config:
