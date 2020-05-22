@@ -9,8 +9,10 @@
 #cd ../
 
 echo "In the sh file"
+ls -la 
+ls -la transition-resources
 
-cp -r cd-resources/kube/ kube-resources/
+cp -r transition-resources/ kube-resources/
 
 cd kube-resources
 
