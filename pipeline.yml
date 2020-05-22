@@ -106,9 +106,7 @@ jobs:
           type: docker-image
           source:
             repository: alpine/git
-
         inputs:
-          - name: target-resources
           - name: cd-resources
           - name: kube-resources
 
@@ -121,6 +119,7 @@ jobs:
           - -exc
           - |
             ls -la
+            ls -la cd-resources
             chmod +x cd-resources/scripts/
             ls -la cd-resources/scripts
             sh cd-resources/scripts/create-commit.sh

@@ -10,7 +10,7 @@
 
 echo "In the sh file"
 
-cp -r target-resources/kube/ kube-resources/
+cp -r cd-resources/kube/ kube-resources/
 
 cd kube-resources
 
