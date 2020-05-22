@@ -4,7 +4,7 @@ resources:
 
   - name: source-base-code
     type: git
-    icon: microsoft-github
+    icon: github-circle
     source:
       uri: ((code-base-repo))
       branch: master
@@ -16,10 +16,10 @@ resources:
       username: ((hub-username))
       password: ((hub-password))
   
-  - name: cd-resources
+  - name: cd-config
     type: git
     source:
-      uri: ((cd-resources-repo))
+      uri: ((cd-config-repo))
       branch: master
       username: ((github-username))
       password: ((github-password))
@@ -79,13 +79,13 @@ jobs:
     plan:      
     - get: source-base-code
       trigger: true
-    - get: cd-resources
+    - get: cd-config
       trigger: true
     - get: kube-resources
     - task: replace-deployment-image
-      file: cd-resources/tasks/replacement-task.yml
+      file: cd-config/tasks/replacement-task.yml
     - task: create-resource-commit
-      file: cd-resources/tasks/create-commit.yml
+      file: cd-config/tasks/create-commit.yml
     - put: kube-resources
       params:
         repository: kube-resources
@@ -93,13 +93,13 @@ jobs:
   # - name: bump-deployments
   #   public: true
   #   plan:
-  #   - get: cd-resources
+  #   - get: cd-config
   #     passed:
   #     - update-deployment-files
   #     trigger: true
   #   - get: kube-resources
   #   - task: create-resource-commit
-  #     # file: cd-resources/tasks/create-commit.yml
+  #     # file: cd-config/tasks/create-commit.yml
   #     config:
   #       platform: linux
   #       image_resource:
@@ -107,7 +107,7 @@ jobs:
   #         source:
   #           repository: alpine/git
   #       inputs:
-  #         - name: cd-resources
+  #         - name: cd-config
   #         - name: kube-resources
 
   #       outputs:
@@ -119,10 +119,10 @@ jobs:
   #         - -exc
   #         - |
   #           ls -la
-  #           ls -la cd-resources
-  #           chmod +x cd-resources/scripts/
-  #           ls -la cd-resources/scripts
-  #           sh cd-resources/scripts/create-commit.sh
+  #           ls -la cd-config
+  #           chmod +x cd-config/scripts/
+  #           ls -la cd-config/scripts
+  #           sh cd-config/scripts/create-commit.sh
   #   - put: kube-resources
   #     params:
   #       repository: kube-resources 

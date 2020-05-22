@@ -7,7 +7,7 @@ image_resource:
 
 inputs:
   - name: transition-resources
-  - name: cd-resources
+  - name: cd-config
   - name: kube-resources
 
 outputs:
@@ -18,7 +18,7 @@ run:
   args:
   - -exc
   - |
-    ls -la cd-resources
-    chmod +x cd-resources/scripts/
-    ls -la cd-resources/scripts
-    sh cd-resources/scripts/create-commit.sh
+    ls -la cd-config
+    chmod +x cd-config/scripts/
+    ls -la cd-config/scripts
+    sh cd-config/scripts/create-commit.sh

@@ -2,7 +2,7 @@
 
 
 # ls -la
-# cp -r cd-resources/ compiled-resources/
+# cp -r cd-config/ compiled-resources/
 
 #git status
 
