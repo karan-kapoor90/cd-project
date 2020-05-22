@@ -6,7 +6,6 @@ image_resource:
     repository: alpine/git
 
 inputs:
-  - name: target-resources
   - name: cd-resources
   - name: kube-resources
 
