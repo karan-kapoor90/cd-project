@@ -8,11 +8,16 @@ image_resource:
 inputs:
   - name: target-resources
   - name: cd-resources
+  - name: kube-resources
 
 outputs:
-- name: cd-resources
+- name: kube-resources
 
 run:
   path: sh
   args:
-  - cd-resources/scripts/create-commit.sh
+  - -exc
+  - |
+    chmod +x cd-resources/scripts/
+    ls -la cd-resources/scripts
+    sh cd-resources/scripts/create-commit.sh
