@@ -81,12 +81,49 @@ jobs:
       trigger: true
     - get: cd-resources
       trigger: true
-    - get: kube-resources
+    # - get: kube-resources
     - task: replace-deployment-image
       file: cd-resources/tasks/replacement-task.yml
+    # - task: create-resource-commit
+    #   file: cd-resources/tasks/create-commit.yml
+    # - put: kube-resources
+    #   params:
+    #     repository: kube-resources
+
+  - name: bump-deployments
+    public: true
+    plan:
+    - get: cd-resources
+      passed:
+      - update-deployment-files
+      trigger: true
+    - get: kube-resources
     - task: create-resource-commit
-      file: cd-resources/tasks/create-commit.yml
+      # file: cd-resources/tasks/create-commit.yml
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: alpine/git
+
+        inputs:
+          - name: target-resources
+          - name: cd-resources
+          - name: kube-resources
+
+        outputs:
+        - name: kube-resources
+
+        run:
+          path: sh
+          args:
+          - -exc
+          - |
+            ls -la
+            chmod +x cd-resources/scripts/
+            ls -la cd-resources/scripts
+            sh cd-resources/scripts/create-commit.sh
     - put: kube-resources
       params:
-        repository: kube-resources
-
+        repository: kube-resources 
