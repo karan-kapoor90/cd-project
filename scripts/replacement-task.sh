@@ -6,7 +6,7 @@
 # Update the name of the image in the source file using yq
 COMMIT=$2:`cat source-base-code/.git/refs/heads/master`
 echo $COMMIT
-yq w -i source-base-code/kube/workshop-deploy.yaml spec.template.spec.containers[0].image $COMMIT
+yq w -i source-base-code/kube/deployment.yaml spec.template.spec.containers[0].image $COMMIT
 
 # Copy all kube resources from code repo to cd repo
 cp -r source-base-code/kube/ transition-resources/
