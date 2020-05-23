@@ -12,6 +12,10 @@
 # ls -la 
 # ls -la transition-resources
 
+cd kube-resources && rm -rf .
+
+cd ../
+
 cp -r transition-resources/kube/ kube-resources/
 
 cd kube-resources
