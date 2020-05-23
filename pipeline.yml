@@ -76,8 +76,10 @@ jobs:
   - name: update-deployment-files
     public: true
     serial: true
-    plan:      
+    plan:
     - get: source-base-code
+      passed:
+      - build-docker-image
       trigger: true
     - get: cd-config
       trigger: true
