@@ -4,11 +4,11 @@ resources:
 
   - name: source-base-code
     type: git
-    icon: github-circle
+    icon: mdi-concourse-ci
     check_every: 30s
     source:
       uri: ((code-base-repo))
-      branch: ((branch))
+      branch: master
 
   - name: docker-hub
     type: docker-image
@@ -21,7 +21,7 @@ resources:
     type: git
     source:
       uri: ((cd-config-repo))
-      branch: ((branch))
+      branch: master
       username: ((github-username))
       password: ((github-password))
 
@@ -29,10 +29,9 @@ resources:
     type: git
     source:
       uri: ((kube-resources-repo))
-      branch: ((branch))
+      branch: master
       username: ((github-username))
       password: ((github-password))
-
 
 jobs:
 

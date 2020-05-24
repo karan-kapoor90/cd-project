@@ -12,9 +12,6 @@ inputs:
 outputs:
 - name: transition-resources
 
-params:
-  TENANT: ((tenant-name))
-  BRANCH: ((branch))
 run:
   path: sh 
   args:
