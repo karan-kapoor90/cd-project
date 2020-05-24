@@ -82,7 +82,7 @@ jobs:
       - build-docker-image
       trigger: true
     - get: cd-config
-      trigger: true
+      trigger: false
     - get: kube-resources
     - task: replace-deployment-image
       file: cd-config/tasks/replacement-task.yml
