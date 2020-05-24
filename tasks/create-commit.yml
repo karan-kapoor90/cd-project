@@ -13,9 +13,6 @@ inputs:
 outputs:
 - name: kube-resources
 
-params:
-  TENANT: ((tenant-name))
-
 run:
   path: sh
   args:
