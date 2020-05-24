@@ -5,6 +5,7 @@ resources:
   - name: source-base-code
     type: git
     icon: github-circle
+    check_every: 30s
     source:
       uri: ((code-base-repo))
       branch: master
