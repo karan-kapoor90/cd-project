@@ -8,7 +8,7 @@ resources:
     check_every: 30s
     source:
       uri: ((code-base-repo))
-      branch: master
+      branch: ((branch))
 
   - name: docker-hub
     type: docker-image
@@ -21,7 +21,7 @@ resources:
     type: git
     source:
       uri: ((cd-config-repo))
-      branch: master
+      branch: ((branch))
       username: ((github-username))
       password: ((github-password))
 
@@ -29,7 +29,7 @@ resources:
     type: git
     source:
       uri: ((kube-resources-repo))
-      branch: master
+      branch: ((branch))
       username: ((github-username))
       password: ((github-password))
 

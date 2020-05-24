@@ -3,7 +3,7 @@
 # Clone the repo that contains all the kube resources
 #git clone cd-config target-resources
 
-echo Tenant name is $TENANT
+echo Tenant name is $TENANT and $BRANCH
 
 # Update the name of the image in the source file using yq
 COMMIT=$2:`cat source-base-code/.git/refs/heads/master`
