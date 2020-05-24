@@ -13,12 +13,13 @@ inputs:
 outputs:
 - name: kube-resources
 
+params:
+  TENANT: ((tenant-name))
+
 run:
   path: sh
   args:
   - -exc
   - |
-    ls -la cd-config
-    chmod +x cd-config/scripts/
-    ls -la cd-config/scripts
+    #chmod +x cd-config/scripts/
     sh cd-config/scripts/create-commit.sh
